@@ -44,15 +44,19 @@ e_tel.place(x=10, y=100)
 
 #candario
 l_data = Label(frame_esq, text='Data consulta', fg='white', bg='#666666', font='arial 15 bold')
-l_data.place(x=10, y=150)
+l_data.place(x=10, y=200)
 e_data = DateEntry(frame_esq, border=4, year=2025)
-e_data.place(x=10, y=190)
+e_data.place(x=10, y=230)
 
 #estado
-l_data = Label(frame_esq, text='Data consulta', fg='white', bg='#666666', font='arial 15 bold')
-l_data.place(x=10, y=150)
-e_data = DateEntry(frame_esq, border=4, year=2025)
-e_data.place(x=10, y=190)
+l_data = Label(frame_esq, text='Estado', fg='white', bg='#666666', font='arial 15 bold')
+l_data.place(x=220, y=200)
+e_data = Entry(frame_esq, border=4, width=5)
+e_data.place(x=220, y=230)
+
+#botões
+b_inserir = Button(frame_esq, text='inserir', command=exit, width=5, height=1)
+b_inserir.place(relx=0.1, rely=0.7)
 
 
 janela.mainloop()
