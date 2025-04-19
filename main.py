@@ -1,5 +1,6 @@
 from tkinter import *
 from tkcalendar import Calendar, DateEntry
+from tkinter import ttk
 
 
 cor1 = '#B3CBED'
@@ -34,38 +35,53 @@ app_nome.place( x=10,y=20)
 # label nome
 l_nome = Label(frame_esq, text='Nome', fg= cor1, bg=cor2, font='arial 15 bold')
 l_nome.place(x=10, y=20)
-e_nome = Entry(frame_esq, border=4)
+e_nome = Entry(frame_esq, border=4, bg=cor3)
 e_nome.place(x=10, y=40)
 
 #Telefone
 l_tel = Label(frame_esq, text='Telefone', fg=cor1,bg=cor2, font='arial 15 bold')
 l_tel.place(x=10, y=80)
-e_tel = Entry(frame_esq, border=4)
+e_tel = Entry(frame_esq, border=4, bg=cor3)
 e_tel.place(x=10, y=100)
 
 
 #candario
-l_data = Label(frame_esq, text='Data consulta', fg=cor1, bg='#666666', font='arial 15 bold')
+l_data = Label(frame_esq, text='Data consulta', fg=cor1, bg=cor2, font='arial 15 bold')
 l_data.place(x=10, y=200)
-e_data = DateEntry(frame_esq, border=4, year=2025)
+e_data = DateEntry(frame_esq, border=4, bg=cor3, year=2025)
 e_data.place(x=10, y=230)
 
 #estado
-l_data = Label(frame_esq, text='Estado', fg='white', bg='#666666', font='arial 15 bold')
+l_data = Label(frame_esq, text='Estado', fg=cor1, bg=cor2, font='arial 15 bold')
 l_data.place(x=220, y=200)
-e_data = Entry(frame_esq, border=4, width=5)
+e_data = Entry(frame_esq, border=4, width=5, bg=cor3)
 e_data.place(x=220, y=230)
 
 #botões
-b_inserir = Button(frame_esq, text='Inserir', command=janela.destroy,bg='#999999',borderwidth=0,width=5, height=1, relief='flat')
+b_inserir = Button(frame_esq, text='Inserir',background=cor1, borderwidth=0,width=5, height=1, relief='raised', overrelief='ridge')
 b_inserir.place(relx=0.08, rely=0.7)
+b_inserir.config(bg=cor1)
 
-b_consultar = Button(frame_esq, text='Consultar', command=janela.destroy, width=5, height=1,borderwidth=0)
+b_consultar = Button(frame_esq, text='Consultar', command=janela.destroy,bg=cor2, width=5, height=1,borderwidth=0)
 b_consultar.place(relx=0.4, rely=0.7)
 
 b_delete = Button(frame_esq, text='Delete', command=janela.destroy,bg='#666666' ,width=5, height=1,borderwidth=0)
 b_delete.place(relx=0.7, rely=0.7)
 
+lista=[]
 
+#lista de cabeçario
+list_head = ['Id','nome', 'telefone', 'data', 'estado']
+
+df_list = lista
+
+
+tree = ttk.Treeview(frame_dir, selectmode='extended', columns=list_head, show='headings')
+
+#vertical scrollBar
+vsc = ttk.Scrollbar(frame_dir, orient='vertical', command= tree.yview)
+
+#horizontal scrollBar
+hsb = ttk.Scrollbar(frame_dir, orient='horizontal', command=tree.xview)
 
 janela.mainloop()
