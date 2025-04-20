@@ -1,14 +1,42 @@
-from tkinter import *
-from tkcalendar import DateEntry
+import sqlite3 as lite
 
-janela = Tk()
-janela.geometry("400x200")
+conn = lite.connect('dados.db')
 
-frame = Frame(janela, width=400, height=200)
-frame.pack()
 
-# Campo de data com .place()
-e_data = DateEntry(frame, width=12, background='darkblue', foreground='white', borderwidth=2)
-e_data.place(x=50, y=50)
+#Crud - create
 
-janela.mainloop()
+lista = ['ana lucia meira', '123@gmail.com', '123456789', '20/03/2021', 'São paulo']
+
+
+with conn:
+    cur = conn.cursor()
+    query = ("INSERT INTO formulario(nome, email, telefone, data, estado)VALUES(?,?,?,?,?)")
+    cur.execute(query,lista)
+
+
+
+#cRud - read
+with conn:
+    cur = conn.cursor()
+    query = ( "SELECT * FROM formulario" )
+    cur.execute(query)
+    info = cur.fetchall()
+    print(info)
+
+
+
+
+#crUd - update
+    lista= ['ana lucia', 1]
+with conn:
+    cur = conn.cursor()
+    query = ( "UPDATE formulario SET nome=? WHERE id=?" )
+    cur.execute(query,lista)
+
+
+#cruD - delete
+lista = [1]
+with conn:
+    cur = conn.cursor()
+    query = ("DELETE FROM formulario WHERE id=?")   
+    cur.execute(query, lista)
