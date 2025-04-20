@@ -68,20 +68,51 @@ b_consultar.place(relx=0.4, rely=0.7)
 b_delete = Button(frame_esq, text='Delete', command=janela.destroy,bg='#666666' ,width=5, height=1,borderwidth=0)
 b_delete.place(relx=0.7, rely=0.7)
 
-lista=[]
+lista=[[1,'ana lucia meira', '123@gmail.com', '123456789', '20/03/2021', 'São paulo'],
+       [2,'joana lucia meira', '123@gmail.com', '123456789', '20/03/2021', 'São paulo'],
+       [3,'heloisa lucia meira', '123@gmail.com', '123456789', '20/03/2021', 'São paulo'],
+       [4,'antonio lucia meira', '123@gmail.com','123456789', '20/03/2021', 'São paulo'],
+       [5,'angelina lucia meira', '123@gmail.com','123456789', '20/03/2021', 'São paulo'],
+       [6,'ana lucia meira', '123@gmail.com','123456789', '20/03/2021', 'São paulo']]
 
 #lista de cabeçario
-list_head = ['Id','nome', 'telefone', 'data', 'estado']
+list_head = ['Id','nome','email', 'telefone', 'data', 'estado']
 
-df_list = lista
 
 
 tree = ttk.Treeview(frame_dir, selectmode='extended', columns=list_head, show='headings')
 
 #vertical scrollBar
-vsc = ttk.Scrollbar(frame_dir, orient='vertical', command= tree.yview)
+vsb = ttk.Scrollbar(frame_dir, orient='vertical', command= tree.yview)
 
 #horizontal scrollBar
 hsb = ttk.Scrollbar(frame_dir, orient='horizontal', command=tree.xview)
+
+
+tree.configure(yscrollcommand=vsb.set, xscrollcommand=hsb.set)
+
+tree.grid(column=0, row=0, sticky='nsew')
+vsb.grid(column=1, row=0,sticky='ns')
+hsb.grid(column=0, row=1, sticky='ew')
+
+frame_dir.rowconfigure(0, weight=12)
+
+#local do elementos nas colunas
+hd = ['nw', 'nw', 'nw', 'nw', 'nw', 'nw']
+#tamanho das larguras das colunas
+h = [30, 170,150,150,140,170]
+n= 0
+
+
+for col in list_head:
+    tree.heading(col, text=col.title(), anchor=CENTER)
+    tree.column(col, width=h[n], anchor=hd[n])
+
+    n+=1
+
+for item in lista:
+    tree.insert('','end', values=item)
+
+
 
 janela.mainloop()
